@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: mysql
+      image: mysql:8.0
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "admin"  
+        - name: MYSQL_DATABASE
+          value: "insta"   
+        - name: MYSQL_USER
+          value: "user"      
+        - name: MYSQL_PASSWORD
+          value: "Moonlight" 
+      ports:
+        - containerPort: 3306
+      volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: mysql-data
+      emptyDir: {}
+
+
